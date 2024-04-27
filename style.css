@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Fredoka';
+    src: url('fonts/Fredoka.ttf');
+
+}
+
+body {
+    background-color: #101010;
+    font-family: 'Fredoka';
+    font-weight: normal;
+    font-style: normal;
+    color: #ffffff;
+}
+
+button {
+    background-image: linear-gradient(90deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    border-radius: 16px;
+    border-style:none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: 'Fredoka';
+    font-size: 16px;
+    font-weight: 500;
+    height: 4rem;
+    padding: 0 2rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, .25) 0 3px 8px;
+    transition: all .5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    }
+
+button:hover {
+    box-shadow: rgba(255, 255, 255, 0.5) 0 1px 10px;
+    transition-duration: .1s;
+}
