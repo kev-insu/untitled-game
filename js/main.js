@@ -92,6 +92,7 @@ function updateStatsDisplay() {
 }
 
 function updateUpgrade() {
+    // Layer 1
     var button1 = document.getElementById("button1");
     var button2 = document.getElementById("button2");
     var button3 = document.getElementById("button3");
@@ -129,6 +130,13 @@ function updateUpgrade() {
     else {
         button4.classList.remove("buyable");
     }
+
+    document.getElementById("topUpgrade2").innerHTML = gameData.costLuckUpgrade + " Rebirths";
+    document.getElementById("botUpgrade2").innerHTML = gameData.boostLuckUpgrade + "x Luck";
+
+    document.getElementById("topUpgrade3").innerHTML = gameData.costRebirthUpgrade + " Rebirths";
+    document.getElementById("botUpgrade3").innerHTML = gameData.boostRebirthUpgrade + "x Rebirths";
+
 
     var button5 = document.getElementById("button5");
     var button6 = document.getElementById("button6");
@@ -220,6 +228,13 @@ function resetPrestige() {
         gameData.currentRarity = 0;
         document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
         document.getElementById("botUpgrade5").innerHTML = "Unable to reset.";
+
+        gameData.currentRebirth = 0;
+        gameData.costLuckUpgrade = 1; // Luck Upgrade
+        gameData.boostLuckUpgrade = 1;
+        gameData.costRebirthUpgrade = 10; // Rebirth Upgrade
+        gameData.boostRebirthUpgrade = 1;
+        gameData.costRollSpeedUpgrade = 1; // Roll Speed Upgrade
     }
 }
 
