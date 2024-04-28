@@ -56,6 +56,7 @@ function updateStatsDisplay() {
     document.getElementById("stat-transcension").innerHTML =  gameData.currentTranscension + " Transcensions";
 
     document.getElementById("multLuck").innerHTML = "Luck Multiplier: " + gameData.multiplierLuck + "x";
+    document.getElementById("multRebirth").innerHTML = "Rebirth Multiplier: " + gameData.multiplierRebirth + "x";
     document.getElementById("multPrestige").innerHTML = "Prestige Multiplier: " + gameData.multiplierPrestige + "x";
     document.getElementById("multTranscension").innerHTML = "Transcension Multiplier: " + gameData.multiplierTranscension + "x";
 
@@ -90,7 +91,7 @@ function updateUpgrade() {
     // button 1 (reset for rebirths)
     if (gameData.currentRarity >= 2) {
         button1.classList.add("buyable");
-        document.getElementById("botUpgrade1").innerHTML =  "Reset for +" + Math.pow(2, gameData.currentRarity - 2) + " Rebirths";
+        document.getElementById("botUpgrade1").innerHTML =  "Reset for +" + calcRebirthGain() + " Rebirths";
     }
     else {
         button1.classList.remove("buyable");
@@ -126,15 +127,29 @@ function updateMultipliers() {
     gameData.multiplierRebirth = gameData.boostRebirthUpgrade;
 }
 
+function calcRebirthGain() {
+    var result = Math.pow(2, gameData.currentRarity - 2) * gameData.multiplierRebirth;
+
+    return result;
+}
+
 function resetRebirth() {
     if (gameData.currentRarity >= 2) {
-        gameData.currentRebirth += Math.pow(2, gameData.currentRarity - 2);
+        gameData.currentRebirth += calcRebirthGain();
         gameData.currentRarity = 0;
         document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
         document.getElementById("botUpgrade1").innerHTML = "Unable to reset.";
     }
 }
 
+function resetPrestige() {
+    if (gameData.currentRarity >= 8) {
+        gameData.currentRebirth += Math.pow(2, gameData.currentRarity - 2);
+        gameData.currentRarity = 0;
+        document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
+        document.getElementById("botUpgrade1").innerHTML = "Unable to reset.";
+    }
+}
 function luckUpgrade() {
     while (gameData.currentRebirth >= gameData.costLuckUpgrade) {
         gameData.currentRebirth -= gameData.costLuckUpgrade;
@@ -144,6 +159,17 @@ function luckUpgrade() {
 
     document.getElementById("topUpgrade2").innerHTML = gameData.costLuckUpgrade + " Rebirths";
     document.getElementById("botUpgrade2").innerHTML = gameData.boostLuckUpgrade + "x Luck";
+}
+
+function rebirthUpgrade() {
+    while (gameData.currentRebirth >= gameData.costRebirthUpgrade) {
+        gameData.currentRebirth -= gameData.costRebirthUpgrade;
+        gameData.costRebirthUpgrade = Math.floor(gameData.costRebirthUpgrade * 3.75);
+        gameData.boostRebirthUpgrade *= 2;
+    }
+
+    document.getElementById("topUpgrade3").innerHTML = gameData.costRebirthUpgrade + " Rebirths";
+    document.getElementById("botUpgrade3").innerHTML = gameData.boostRebirthUpgrade + "x Rebirths";
 }
 
 function returnRollSpeed() {
