@@ -5,25 +5,36 @@
 }
 
 body {
-    background-color: #101010;
+    background-color: #000000;
     font-family: 'Fredoka';
     font-weight: normal;
     font-style: normal;
     color: #ffffff;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
+/* gradients
+linear-gradient(90deg, #7a97ff 6.66%, #6f58ff 43.33%, #895fff 66.66%);
+
+*/
+
+/*
 button {
-    background-image: linear-gradient(90deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+    background-image: linear-gradient(90deg, #000000 6.66%, #1d1d1d 43.33%, #000000 66.66%);
     border-radius: 16px;
-    border-style:none;
+    border-style:solid;
+    border-color:#ffffff;
     box-sizing: border-box;
-    color: #FFFFFF;
+    color: #000000;
     cursor: pointer;
     flex-shrink: 0;
     font-family: 'Fredoka';
     font-size: 16px;
     font-weight: 500;
-    height: 4rem;
+    height: 128px;
+    width: 256px;
     padding: 0 2rem;
     text-align: center;
     text-shadow: rgba(0, 0, 0, .25) 0 3px 8px;
@@ -33,7 +44,128 @@ button {
     touch-action: manipulation;
     }
 
-button:hover {
-    box-shadow: rgba(255, 255, 255, 0.5) 0 1px 10px;
+*/
+
+button {
+    background-color: black;
+    color: white;
+    height: 64px;
+    width: 256px;
+    padding: 10px 20px;
+
+    border: 3px solid transparent;
+    border-radius: 16px;
+    border-style: solid;
+    border-color: #ffffff;
+
+    font-family: 'Fredoka';
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;    
+    transition: background-color 0.3s;
+}   
+
+button.buyable {
+    background-color: hsl(0, 0%, 25%);
+}
+
+button.buyable:hover {
+    background-color: hsl(0, 0%, 50%);
+    transition-duration: .1s;
+}
+
+/* A class container to store stat layers */
+.layerStats {
+    position: absolute;
+    bottom: 48px;
+    right: 4px;
+    
+    font-size: 24px;
+    font-weight: 600;
+
+    margin: 2px;
+    padding: 0px;
+}
+
+/* The individual stat layers within class stats */
+.stat-design {
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+
+.statistics {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin: 2px;
+    padding: 0px;
+
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.row {
+    display: flex;
+    justify-content: left;    
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+.button-wrapper {
+    text-align: center;
+    margin: 0 10px; /* Adjust as needed */
+    font-size: 14px;
+}
+
+#rarity {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 0px;
+    
+    font-size: 48px;
+    font-weight: 600;
+    background: linear-gradient(90deg, hsl(0, 0%, 75%) 6.66%, hsl(0, 0%, 60%) 43.33%, hsl(0, 0%, 50%) 66.66%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+#stat-rebirth {
+    background: linear-gradient(90deg, hsl(200, 100%, 75%) 6.66%, hsl(200, 100%, 60%) 43.33%, hsl(200, 100%, 50%) 66.66%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+#stat-prestige {
+    background: linear-gradient(90deg, hsl(270, 100%, 75%) 6.66%, hsl(270, 100%, 60%) 43.33%, hsl(270, 100%, 50%) 66.66%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+#stat-transcension {
+    background: linear-gradient(90deg, hsl(125, 100%, 75%) 6.66%, hsl(125, 100%, 60%) 43.33%, hsl(125, 100%, 50%) 66.66%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+#buttonRoll {
+    background-color: hsl(0, 0%, 25%);
+}
+
+#buttonRoll:hover {
+    background-color: hsl(0, 0%, 50%);
     transition-duration: .1s;
 }

@@ -1,8 +1,24 @@
- 
-    2024.4.27:
-- implemented the barebones mechanic for rolling rarities (hover/ click buttons)
-- implemented background and font
-- created icon
+2024.4.28:
+    - buttons 1 and 2 have functions and work now (reset for rebirths and luck upgrade)
+    - added button animations, although basic
+    - added a gameLoop to constantly update values by tick (hopefully working as intended)
+    - proper preparation for implementation of upgrades
+        - roll button can be dynamically altered in speed with upgrades
+        - introduced rebirth, prestige, and transcension layers with proper gradients above rarity text
+            - true and base mechanics do not work yet, but the text formats are there
+    - created a gradient and properly aligned "stats" above rarity
+    - imported break_eternity script (credits to Patashu)
+        - have yet to understand its usage though
+    - oriented rarity at bottom right
+    - prevented potential future overflow in the x and y axes
 
-    2024.4.26:
-- creation
+2024.4.27:
+    - (WIP) usage of break_eternity script for true incremental scaling
+        - break_eternity script supports numbers up to 10^^1e308
+    - accounted for proper luck scaling towards rarities
+    - implemented the barebones mechanic for rolling rarities (hover/ click buttons)
+    - implemented background and font
+    - created icon
+
+2024.4.26:
+    - creation
