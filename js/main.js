@@ -64,6 +64,8 @@ function updateStatsDisplay() {
     document.getElementById("stat-prestige").innerHTML =  gameData.currentPrestige + " Prestiges";
     document.getElementById("stat-transcension").innerHTML =  gameData.currentTranscension + " Transcensions";
 
+    document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]"
+
     document.getElementById("multLuck").innerHTML = "Luck Multiplier: " + gameData.multiplierLuck + "x";
     document.getElementById("multRebirth").innerHTML = "Rebirth Multiplier: " + gameData.multiplierRebirth + "x";
     document.getElementById("multPrestige").innerHTML = "Prestige Multiplier: " + gameData.multiplierPrestige + "x";
@@ -186,7 +188,7 @@ function calcRebirthGain() {
 }
 
 function calcPrestigeGain() {
-    var result = Math.pow(2, gameData.currentRarity - 8) * gameData.multiplierPrestige;
+    var result = (gameData.currentRarity - 7) * gameData.multiplierPrestige;
 
     return result;
 }
@@ -252,7 +254,7 @@ function upgradeLuck2() {
 function upgradeRebirth2() {
     while (gameData.currentPrestige >= gameData.costRebirthUpgrade2) {
         gameData.currentPrestige -= gameData.costRebirthUpgrade2;
-        gameData.costRebirthUpgrade2 = Math.floor(gameData.costRebirthUpgrade2 * 3.75);
+        gameData.costRebirthUpgrade2 = Math.floor(gameData.costRebirthUpgrade2 * 3.5);
         gameData.boostRebirthUpgrade2 *= 2;
     }
 
