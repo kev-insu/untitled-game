@@ -168,7 +168,7 @@ function updateUpgrade() {
 function updateMultipliers() {
     gameData.multiplierLuck = gameData.boostLuckUpgrade * gameData.boostLuckUpgrade2;
     gameData.multiplierRebirth = gameData.boostRebirthUpgrade * gameData.boostRebirthUpgrade2;
-    gameData.multiplierRebirth = gameData.boostPrestigeUpgrade;
+    gameData.multiplierPrestige = gameData.boostPrestigeUpgrade;
 }
 
 function calcRebirthGain() {
@@ -178,7 +178,7 @@ function calcRebirthGain() {
 }
 
 function calcPrestigeGain() {
-    var result = Math.pow(2, gameData.currentRarity - 2) * gameData.multiplierRebirth;
+    var result = Math.pow(2, gameData.currentRarity - 8) * gameData.multiplierPrestige;
 
     return result;
 }
@@ -216,7 +216,7 @@ function rebirthUpgrade() {
 
 function resetPrestige() {
     if (gameData.currentRarity >= 8) {
-        gameData.currentPrestige += Math.pow(2, gameData.currentRarity - 2);
+        gameData.currentPrestige += calcPrestigeGain();
         gameData.currentRarity = 0;
         document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
         document.getElementById("botUpgrade5").innerHTML = "Unable to reset.";
@@ -224,8 +224,8 @@ function resetPrestige() {
 }
 
 function upgradeLuck2() {
-    while (gameData.currentRebirth >= gameData.costLuckUpgrade2) {
-        gameData.currentRebirth -= gameData.costLuckUpgrade2;
+    while (gameData.currentPrestige >= gameData.costLuckUpgrade2) {
+        gameData.currentPrestige -= gameData.costLuckUpgrade2;
         gameData.costLuckUpgrade2 = Math.floor(gameData.costLuckUpgrade2 * 2.5);
         gameData.boostLuckUpgrade2 *= 5;
     }
@@ -235,25 +235,25 @@ function upgradeLuck2() {
 }
 
 function upgradeRebirth2() {
-    while (gameData.currentRebirth >= gameData.costPrestigeUpgrade) {
-        gameData.currentRebirth -= gameData.costPrestigeUpgrade;
-        gameData.costPrestigeUpgrade = Math.floor(gameData.costPrestigeUpgrade * 10);
-        gameData.boostPrestigeUpgrade *= 2;
-    }
-
-    document.getElementById("topUpgrade7").innerHTML = gameData.costPrestigeUpgrade + " Prestiges";
-    document.getElementById("botUpgrade7").innerHTML = gameData.boostPrestigeUpgrade + "x Rebirths";
-}
-
-function upgradePrestige() {
-    while (gameData.currentRebirth >= gameData.costRebirthUpgrade2) {
-        gameData.currentRebirth -= gameData.costRebirthUpgrade2;
+    while (gameData.currentPrestige >= gameData.costRebirthUpgrade2) {
+        gameData.currentPrestige -= gameData.costRebirthUpgrade2;
         gameData.costRebirthUpgrade2 = Math.floor(gameData.costRebirthUpgrade2 * 3.75);
         gameData.boostRebirthUpgrade2 *= 2;
     }
 
     document.getElementById("topUpgrade7").innerHTML = gameData.costRebirthUpgrade2 + " Prestiges";
     document.getElementById("botUpgrade7").innerHTML = gameData.boostRebirthUpgrade2 + "x Rebirths";
+}
+
+function upgradePrestige() {
+    while (gameData.currentPrestige >= gameData.costPrestigeUpgrade) {
+        gameData.currentPrestige -= gameData.costPrestigeUpgrade;
+        gameData.costPrestigeUpgrade = Math.floor(gameData.costPrestigeUpgrade * 10);
+        gameData.boostPrestigeUpgrade *= 2;
+    }
+
+    document.getElementById("topUpgrade8").innerHTML = gameData.costPrestigeUpgrade + " Prestiges";
+    document.getElementById("botUpgrade8").innerHTML = gameData.boostPrestigeUpgrade + "x Prestiges";
 }
 
 
@@ -289,4 +289,8 @@ function incrementPrestige() {
 
 function incrementRebirth() {
     gameData.currentRebirth++;
+}
+
+function rarity10() {
+    gameData.currentRarity = 10;
 }
