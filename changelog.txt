@@ -1,4 +1,10 @@
+2024.4.29:
+    - balanced prestige layer's reset (rarity - 7) as well as rebirth upgrade 2
+
+
 2024.4.28:
+    - layer 2 (prestige) added
+    - layer 1 (rebirth) added
     - buttons 1 and 2 have functions and work now (reset for rebirths and luck upgrade)
     - added button animations, although basic
     - added a gameLoop to constantly update values by tick (hopefully working as intended)
