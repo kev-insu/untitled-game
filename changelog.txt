@@ -1,4 +1,8 @@
 2024.4.29:
+    - created stat reset code functions for layers rebirth, prestige, and transcension
+    - added reset for transcension button (start of layer 3 (no upgrades available yet))
+    - added coloring to top and bottom text for buttons, color to buttons when hovered over
+    - improved gradients
     - added proper notation using eternal_notations.js, currently using AD Mixed Scientific
     - optimized upgrade formulas from a time complexity of O(n) to O(1) by utilizing geometric sums and logarithmic comparisons
         - will test for bugs
