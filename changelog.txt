@@ -1,6 +1,10 @@
 2024.4.29:
+    - added proper notation using eternal_notations.js, currently using AD Mixed Scientific
+    - optimized upgrade formulas from a time complexity of O(n) to O(1) by utilizing geometric sums and logarithmic comparisons
+        - will test for bugs
     - balanced prestige layer's reset (rarity - 7) as well as rebirth upgrade 2
-
+    - successfully converted the game's base code to incorporate the break_eternity library
+    - (WIP) handle upgrades with a large number of instructions (DONE 2024.4.29)
 
 2024.4.28:
     - layer 2 (prestige) added
@@ -19,7 +23,7 @@
     - prevented potential future overflow in the x and y axes
 
 2024.4.27:
-    - (WIP) usage of break_eternity script for true incremental scaling
+    - (WIP) usage of break_eternity script for true incremental scaling (DONE 2024.4.29)
         - break_eternity script supports numbers up to 10^^1e308
     - accounted for proper luck scaling towards rarities
     - implemented the barebones mechanic for rolling rarities (hover/ click buttons)

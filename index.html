@@ -7,19 +7,23 @@
     <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="style.css">
 
-    <script src="js/main.js" charset="utf-8" type="text/javascript"></script>
     <script src="js/break_eternity.js"></script>
+    <script src="js/eternal_notations.js"></script>
+    <script src="js/functionTemplate.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/main2.js" charset="utf-8" type="text/javascript"></script>
+
 
     <title>Rarities - Incremental</title>
 </head>
 
 <body>
-    <h1>Rarities - Incremental (Alpha v2024.4.27)</h1>
+    <h1>Rarities - Incremental (Alpha v2024.4.29)</h1>
     <!--
     <p>In order to roll, hover your cursor over the 'Roll' button.</p>
     -->
 
     <div class="button-container">
+        <!-- Roll -->
         <div class="row">
             <div class="button-wrapper">
                 <button id="buttonRoll">Roll</button>
@@ -43,6 +47,7 @@
                 <button onclick="rarity10()">|</button>
             </div>
         </div>
+        <!-- Layer 1 (Rebirth) -->
         <div class="row">
             <div class="button-wrapper">
                 <p id="topButton1">Requirement: Common [#2]</p>
@@ -52,12 +57,12 @@
             <div class="button-wrapper">
                 <p id="topUpgrade2">1 Rebirths</p>
                 <button id="button2" onclick="luckUpgrade()">Luck Upgrade</button>
-                <p id="botUpgrade2">x1 Luck Multiplier</p>
+                <p id="botUpgrade2">x1 Luck</p>
             </div>
             <div class="button-wrapper">
                 <p id="topUpgrade3">10 Rebirths</p>
                 <button id="button3" onclick="rebirthUpgrade()">Rebirth Upgrade</button>
-                <p id="botUpgrade3">x1 Rebirth Multiplier</p>
+                <p id="botUpgrade3">x1 Rebirths</p>
             </div>
             <div class="button-wrapper">
                 <p id="topUpgrade4">1 Rebirths</p>
@@ -74,17 +79,17 @@
             <div class="button-wrapper">
                 <p id="topUpgrade6">1 Prestiges</p>
                 <button id="button6" onclick="upgradeLuck2()">Luck Upgrade II</button>
-                <p id="botUpgrade6">x1 Luck Multiplier</p>
+                <p id="botUpgrade6">x1 Luck</p>
             </div>
             <div class="button-wrapper">
                 <p id="topUpgrade7">1 Prestiges</p>
                 <button id="button7" onclick="upgradeRebirth2()">Rebirth Upgrade II</button>
-                <p id="botUpgrade7">x1 Rebirth Multiplier</p>
+                <p id="botUpgrade7">x1 Rebirths</p>
             </div>
             <div class="button-wrapper">
                 <p id="topUpgrade8">2 Prestiges</p>
                 <button id="button8" onclick="upgradePrestige()">Prestige Upgrade</button>
-                <p id="botUpgrade8">x1 Prestige Multiplier</p>
+                <p id="botUpgrade8">x1 Prestiges</p>
             </div>
         </div>
         <div class="row">
@@ -96,22 +101,22 @@
             <div class="button-wrapper">
                 <p>1 Transcensions</p>
                 <button>Luck Upgrade III</button>
-                <p>x1 Luck Multiplier</p>
+                <p>x1 Luck</p>
             </div>
             <div class="button-wrapper">
                 <p>1 Transcensions</p>
                 <button>Rebirth Upgrade III</button>
-                <p>x1 Rebirth Multiplier</p>
+                <p>x1 Rebirths</p>
             </div>
             <div class="button-wrapper">
                 <p>1 Transcensions</p>
                 <button>Prestige Upgrade II</button>
-                <p>x1 Prestige Multiplier</p>
+                <p>x1 Prestiges</p>
             </div>
             <div class="button-wrapper">
                 <p>20 Transcensions</p>
                 <button onclick="incrementRebirth()">Transcension Upgrade</button>
-                <p>x1 Transcension Multiplier</p>
+                <p>x1 Transcensions</p>
             </div>
         </div>
     </div>
