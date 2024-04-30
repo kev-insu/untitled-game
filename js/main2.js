@@ -29,7 +29,20 @@ var gameData = {
     boostRebirthUpgrade2: new Decimal(1),
 
     costPrestigeUpgrade: new Decimal(2),
-    boostPrestigeUpgrade: new Decimal(1)
+    boostPrestigeUpgrade: new Decimal(1),
+
+    // Layer 3 - Transcension
+    costLuckUpgrade3: new Decimal(1),
+    boostLuckUpgrade3: new Decimal(1),
+
+    costRebirthUpgrade2: new Decimal(1),
+    boostRebirthUpgrade2: new Decimal(1),
+
+    costPrestigeUpgrade: new Decimal(1),
+    boostPrestigeUpgrade: new Decimal(1),
+
+    costTranscensionUpgrade: new Decimal(1),
+    boostTranscensionUpgrade: new Decimal(1)
 }
 
 var gameInterval = setInterval(gameTick, 16);
@@ -60,7 +73,7 @@ function updateUpgrade() {
     }
 
     // button 2
-    if (gameData.currentRebirth.greaterThan(gameData.costLuckUpgrade)) {
+    if (gameData.currentRebirth.greaterThanOrEqualTo(gameData.costLuckUpgrade)) {
         button2.classList.add("buyable");
     }
     else {
@@ -68,7 +81,7 @@ function updateUpgrade() {
     }
 
     // button 3
-    if (gameData.currentRebirth.greaterThan(gameData.costRebirthUpgrade)) {
+    if (gameData.currentRebirth.greaterThanOrEqualTo(gameData.costRebirthUpgrade)) {
         button3.classList.add("buyable");
     }
     else {
@@ -76,7 +89,7 @@ function updateUpgrade() {
     }
 
     // button 4
-    if (gameData.currentRebirth.greaterThan(gameData.costRollSpeedUpgrade)) {
+    if (gameData.currentRebirth.greaterThanOrEqualTo(gameData.costRollSpeedUpgrade)) {
         button4.classList.add("buyable");
     }
     else {
@@ -98,7 +111,10 @@ function updateUpgrade() {
     document.getElementById("topUpgrade8").innerHTML = EternalNotations.Presets.ADMixedScientific.format(gameData.costPrestigeUpgrade) + " Prestiges";
     document.getElementById("botUpgrade8").innerHTML = "x" + EternalNotations.Presets.ADMixedScientific.format(gameData.boostPrestigeUpgrade) + " Prestiges";
 
+    document.getElementById("topUpgrade10").innerHTML = EternalNotations.Presets.ADMixedScientific.format(gameData.costLuckUpgrade3) + " Transcensions";
+    document.getElementById("botUpgrade10").innerHTML = "x" + EternalNotations.Presets.ADMixedScientific.format(gameData.boostLuckUpgrade3) + " Luck";
 
+    // Layer 2
     var button5 = document.getElementById("button5");
     var button6 = document.getElementById("button6");
     var button7 = document.getElementById("button7");
@@ -112,30 +128,46 @@ function updateUpgrade() {
         button5.classList.remove("buyable");
     }
 
-    if (gameData.currentPrestige.greaterThan(gameData.costLuckUpgrade2)) {
+    if (gameData.currentPrestige.greaterThanOrEqualTo(gameData.costLuckUpgrade2)) {
         button6.classList.add("buyable");
     }
     else {
         button6.classList.remove("buyable");
     }
 
-    if (gameData.currentPrestige.greaterThan(gameData.costRebirthUpgrade2)) {
+    if (gameData.currentPrestige.greaterThanOrEqualTo(gameData.costRebirthUpgrade2)) {
         button7.classList.add("buyable");
     }
     else {
         button7.classList.remove("buyable");
     }
 
-    if (gameData.currentPrestige.greaterThan(gameData.costPrestigeUpgrade)) {
+    if (gameData.currentPrestige.greaterThanOrEqualTo(gameData.costPrestigeUpgrade)) {
         button8.classList.add("buyable");
     }
     else {
         button8.classList.remove("buyable");
     }
+
+    // Layer 3
+    var button9 = document.getElementById("button9");
+    if (gameData.currentRarity.greaterThanOrEqualTo(30)) {
+        button9.classList.add("buyable");
+        document.getElementById("botUpgrade9").innerHTML =  "Reset for +" + EternalNotations.Presets.ADMixedScientific.format(calcTranscensionGain()) + " Transcensions";
+    }
+    else {
+        button9.classList.remove("buyable");
+    }
+    if (gameData.currentTranscension.greaterThanOrEqualTo(gameData.costLuckUpgrade3)) {
+        button10.classList.add("buyable");
+    }
+    else {
+        button10.classList.remove("buyable");
+    }
 }
 
 function updateMultipliers() {
-    gameData.multiplierLuck = gameData.boostLuckUpgrade.mul(gameData.boostLuckUpgrade2);
+    gameData.multiplierLuck = gameData.boostLuckUpgrade.mul(gameData.boostLuckUpgrade2).mul(gameData.boostLuckUpgrade3);
     gameData.multiplierRebirth = gameData.boostRebirthUpgrade.mul(gameData.boostRebirthUpgrade2);
     gameData.multiplierPrestige = gameData.boostPrestigeUpgrade;
 }
@@ -145,19 +177,17 @@ function updateStatsDisplay() {
     let prestige = document.getElementById("stat-prestige");
     let transcension = document.getElementById("stat-transcension");
 
-    document.getElementById("stat-rebirth").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentRebirth) + " Rebirths";
-    document.getElementById("stat-prestige").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentPrestige) + " Prestiges";
-    document.getElementById("stat-transcension").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentTranscension) + " Transcensions";
-    // EternalNotations.Presets.MixedScientific
-    // new EternalNotations.DefaultNotation().format(
-    document.getElementById("rarity").innerHTML = "Common [#" + EternalNotations.Presets.ADMixedScientific.format(gameData.currentRarity) + "]"
-
-    document.getElementById("totalRolls").innerHTML = "Total Rolls: " + gameData.totalRolls;
-
     document.getElementById("multLuck").innerHTML = "Luck Multiplier: x" + EternalNotations.Presets.ADMixedScientific.format(gameData.multiplierLuck);
     document.getElementById("multRebirth").innerHTML = "Rebirth Multiplier: x" + EternalNotations.Presets.ADMixedScientific.format(gameData.multiplierRebirth);
     document.getElementById("multPrestige").innerHTML = "Prestige Multiplier: x" + EternalNotations.Presets.ADMixedScientific.format(gameData.multiplierPrestige);
     document.getElementById("multTranscension").innerHTML = "Transcension Multiplier: x" + EternalNotations.Presets.ADMixedScientific.format(gameData.multiplierTranscension);
+    document.getElementById("totalRolls").innerHTML = "Total Rolls: " + gameData.totalRolls;
+
+    document.getElementById("stat-rebirth").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentRebirth) + " Rebirths";
+    document.getElementById("stat-prestige").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentPrestige) + " Prestiges";
+    document.getElementById("stat-transcension").innerHTML =  EternalNotations.Presets.ADMixedScientific.format(gameData.currentTranscension) + " Transcensions";
+    document.getElementById("rarity").innerHTML = "Common [#" + EternalNotations.Presets.ADMixedScientific.format(gameData.currentRarity) + "]"
+
 
     if (gameData.currentRebirth.eq(0)) {
         rebirth.style.display = "none";
@@ -219,6 +249,12 @@ function calcPrestigeGain() {
     return result;
 }
 
+function calcTranscensionGain() {
+    var result = gameData.currentRarity.sub(29).mul(gameData.multiplierTranscension);
+
+    return result;
+}
+
 function resetRebirth() { // check
     if (gameData.currentRarity.greaterThanOrEqualTo(2)) {
         gameData.currentRebirth = gameData.currentRebirth.add(calcRebirthGain());
@@ -272,12 +308,7 @@ function resetPrestige() { // check
         document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
         document.getElementById("botUpgrade5").innerHTML = "Unable to reset.";
 
-        gameData.currentRebirth = new Decimal(0);
-        gameData.costLuckUpgrade = new Decimal(1); // Luck Upgrade
-        gameData.boostLuckUpgrade = new Decimal(1);
-        gameData.costRebirthUpgrade = new Decimal(10); // Rebirth Upgrade
-        gameData.boostRebirthUpgrade = new Decimal(1);
-        gameData.costRollSpeedUpgrade = new Decimal(1); // Roll Speed Upgrade
+        statResetRebirth();
     }
 }
 
@@ -315,6 +346,36 @@ function upgradePrestige() {
     }
 }
 
+function resetTranscension() { // check
+    if (gameData.currentRarity.greaterThanOrEqualTo(30)) {
+        gameData.currentTranscension = gameData.currentTranscension.add(calcTranscensionGain());
+        gameData.currentRarity = new Decimal(0);
+        document.getElementById("rarity").innerHTML = "Common [#" + gameData.currentRarity + "]";
+        document.getElementById("botUpgrade1").innerHTML = "Unable to reset.";
+
+        statResetRebirth();
+        statResetPrestige();
+    }
+}
+
+function upgradeLuck3() { // initial: (1, 1), baseCost: 2, baseBoost: 10
+    if (gameData.currentTranscension.greaterThanOrEqualTo(gameData.costLuckUpgrade3)) {
+        let current = gameData.currentTranscension;
+        let cost = gameData.costLuckUpgrade3;
+        let boost = gameData.boostLuckUpgrade3;
+        let baseCost = new Decimal(2);
+        let baseBoost = new Decimal(10);
+
+        let baseminus = baseCost.sub(new Decimal(1));
+        let times = baseminus.mul(current).add(cost).log(baseCost).sub(cost.log(baseCost)).floor();
+        let cum = baseCost.pow(times).sub(new Decimal(1)).mul(cost).div(baseminus);
+    
+        gameData.currentTranscension = current.sub(cum);
+        gameData.costLuckUpgrade3 = baseCost.pow(times).mul(cost);
+        gameData.boostLuckUpgrade3 = baseBoost.pow(times).mul(boost);
+    }
+}
+
 
 function returnRollSpeed() {
     return gameData.rollSpeed;
@@ -336,8 +397,7 @@ function returnTranscension() {
     return gameData.currentTranscension;
 }
 
-/* Testing/ temporary functions */
-
+// Testing/ temporary functions:
 /*
 function incrementTranscension() {
     gameData.currentTranscension++;
@@ -351,7 +411,47 @@ function incrementRebirth() {
     gameData.currentRebirth++;
 }
 */
-
 function rarity10() {
-    gameData.currentRarity = new Decimal(100);
+    gameData.currentRarity = new Decimal(1);
+    /*
+    gameData.currentTranscension = new Decimal(1e72.7);
+    gameData.currentPrestige = new Decimal(1e72.7);
+    gameData.currentRebirth = new Decimal(1e72.7);
+    */
+}
+
+// Stat Reset Functions:
+function resetRarity() {
+    gameData.currentRarity = new Decimal(0);
+}
+
+function statResetRebirth() {
+    gameData.currentRebirth = new Decimal(0);
+    gameData.costLuckUpgrade = new Decimal(1); // Luck Upgrade
+    gameData.boostLuckUpgrade = new Decimal(1);
+    gameData.costRebirthUpgrade = new Decimal(10); // Rebirth Upgrade
+    gameData.boostRebirthUpgrade = new Decimal(1);
+    gameData.costRollSpeedUpgrade = new Decimal(1); // Roll Speed Upgrade
+}
+
+function statResetPrestige() {
+    gameData.currentPrestige = new Decimal(0);
+    gameData.costLuckUpgrade2 = new Decimal(1);
+    gameData.boostLuckUpgrade2 = new Decimal(1);
+    gameData.costRebirthUpgrade2 = new Decimal(1);
+    gameData.boostRebirthUpgrade2 = new Decimal(1);
+    gameData.costPrestigeUpgrade = new Decimal(2);
+    gameData.boostPrestigeUpgrade = new Decimal(1);
+}
+
+function statResetTranscension() {
+    gameData.currentTranscension = new Decimal(0);
+    gameData.costRebirthUpgrade2 = new Decimal(1);
+    gameData.boostRebirthUpgrade2 = new Decimal(1);
+
+    gameData.costPrestigeUpgrade = new Decimal(1);
+    gameData.boostPrestigeUpgrade = new Decimal(1);
+
+    gameData.costTranscensionUpgrade = new Decimal(1);
+    gameData.boostTranscensionUpgrade = new Decimal(1);
 }
