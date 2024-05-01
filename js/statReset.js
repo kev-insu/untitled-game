@@ -3,4 +3,5 @@ function statReset1() {
     statResetRebirth();
     statResetPrestige();
     statResetTranscension();
+    resetMisc();
 }
