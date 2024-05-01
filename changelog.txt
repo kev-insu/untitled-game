@@ -1,3 +1,13 @@
+2024.4.30:
+    - added a save and load mechanic to the game
+        - note: must convert Decimal objects to string type prior to saving
+            - likewise, must convert the saved string type variables to Decimal and save to gameData during load
+    - changed the layer reset text above buttons accordingly with gradients and proper rarities
+    - created dynamic rarity gradients and introduced 51 new rarity tier names
+    - completed layer 3 (transcension), still have to test multiplier costs and boosts
+    - reformatted boost and cost labels above and below buttons
+    - current main.js lines: 470
+
 2024.4.29:
     - created stat reset code functions for layers rebirth, prestige, and transcension
     - added reset for transcension button (start of layer 3 (no upgrades available yet))

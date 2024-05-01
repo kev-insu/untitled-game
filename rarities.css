@@ -1,0 +1,53 @@
+.text-basic {
+    background: linear-gradient(90deg, hsl(0, 0%, 50%) 10%, hsl(20, 0%, 35%) 50%, hsl(0, 0%, 20%) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.text-common {
+    background: linear-gradient(90deg, hsl(0, 0%, 100%) 10%, hsl(0, 0%, 80%) 50.00%, hsl(0, 0%, 60%) 90.00%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.text-uncommon {
+    background: linear-gradient(90deg, hsl(120, 100%, 90%) 10%, hsl(120, 100%, 80%) 50.00%, hsl(120, 100%, 70%) 90.00%);
+}
+
+.text-rare {
+    background: linear-gradient(to right, #68edff, #00aeff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.text-epic {
+    background: linear-gradient(90deg, hsl(262, 62%, 80%) 10%, hsl(262, 62%, 70%) 50.00%, hsl(262, 62%, 60%) 90.00%);
+}
+
+.text-unique {
+    background: linear-gradient(90deg, hsl(45, 100%, 75%) 10%, hsl(45, 100%, 65%) 50.00%, hsl(45, 100%, 55%) 90.00%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.text.undefined {
+    background: linear-gradient(to right, #36d1dc, #5b86e5);
+}
+
+#rarity {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 0px;
+    
+    font-size: 48px;
+    font-weight: 700;
+
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
